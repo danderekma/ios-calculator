@@ -1,6 +1,7 @@
 import React from "react";
-import Field from "./Components/Field"
 import { evaluate } from "mathjs";
+import Field from "./Components/Field"
+import ClearButton from "./Components/ClearButton";
 import NumberButton from "./Components/NumberButton";
 import DecimalButton from "./Components/DecimalButton";
 import OperatorButton from "./Components/OperatorButton";
@@ -13,24 +14,34 @@ class App extends React.Component {
       currentValue: 0,
       previousValue: "",
       operation: "",
-      opToggle: false
+      opToggled: false,
+      invokedEquals: false
     }
     this.handleNumInput = this.handleNumInput.bind(this);
-    this.handleOperation = this.handleOperation.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
     this.handleEquals = this.handleEquals.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
+    this.handleOperation = this.handleOperation.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   handleNumInput(num) {
-    let opInProgress = false;
-    if (this.state.currentValue && this.state.operation) {
-      this.setState({previousValue: this.state.currentValue});
-      opInProgress = true;
-    }
-    if (this.state.currentValue && !opInProgress) {
+    if (this.state.currentValue && !this.state.opToggled) {
+      if (this.state.invokedEquals) {
+        this.setState({
+          currentValue: num,
+          invokedEquals: false
+        });
+        return;
+      }
       this.setState({currentValue: this.state.currentValue.concat(num)});
       return;
+    }
+    if (this.state.currentValue && this.state.operation && this.state.opToggled) {
+      this.setState({
+        previousValue: this.state.currentValue,
+        opToggled: false
+      });
     }
     this.setState({currentValue: num});
   }
@@ -38,7 +49,8 @@ class App extends React.Component {
     if (this.state.previousValue && this.state.currentValue) {
       this.setState({
         currentValue: evaluate(this.state.previousValue + this.state.operation + this.state.currentValue),
-        previousValue: ""
+        previousValue: "",
+        invokedEquals: true
       });
     }
   }
@@ -49,8 +61,16 @@ class App extends React.Component {
     this.setState({operation: op});
     this.handleEquals();
   }
-  handleToggle(isToggled) {
-    this.setState({opToggle: isToggled});
+  handleClear() {
+    this.setState({
+      currentValue: 0,
+      previousValue: "",
+      operation: "",
+      opToggled: false
+    });
+  }
+  handleToggle() {
+    this.setState({opToggled: true});
   }
 
   render() {
@@ -58,6 +78,7 @@ class App extends React.Component {
       <div>
         <h1>iOS Calculator</h1>
         <Field value={this.state.currentValue}/>
+        <ClearButton value="C" handleClear={this.handleClear}/>
         <NumberButton value="0" handleNumInput={this.handleNumInput}/>
         <NumberButton value="1" handleNumInput={this.handleNumInput}/>
         <NumberButton value="2" handleNumInput={this.handleNumInput}/>
@@ -69,10 +90,10 @@ class App extends React.Component {
         <NumberButton value="8" handleNumInput={this.handleNumInput}/>
         <NumberButton value="9" handleNumInput={this.handleNumInput}/>
         <DecimalButton value="." handleDecimal={this.handleDecimal}/>
-        <OperatorButton value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
-        <OperatorButton value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
-        <OperatorButton value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
-        <OperatorButton value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
+        <OperatorButton value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <EqualsButton value="=" handleEquals={this.handleEquals}/>
       </div>
     );
