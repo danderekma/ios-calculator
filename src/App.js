@@ -2,6 +2,7 @@ import React from "react";
 import Field from "./Components/Field"
 import { evaluate } from "mathjs";
 import NumberButton from "./Components/NumberButton";
+import DecimalButton from "./Components/DecimalButton";
 import OperatorButton from "./Components/OperatorButton";
 import EqualsButton from "./Components/EqualsButton";
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     this.handleOperation = this.handleOperation.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleEquals = this.handleEquals.bind(this);
+    this.handleDecimal = this.handleDecimal.bind(this);
   }
 
   handleNumInput(num) {
@@ -39,6 +41,9 @@ class App extends React.Component {
         previousValue: ""
       });
     }
+  }
+  handleDecimal() {
+    this.handleNumInput(".");
   }
   handleOperation(op) {
     this.setState({operation: op});
@@ -63,6 +68,7 @@ class App extends React.Component {
         <NumberButton value="7" handleNumInput={this.handleNumInput}/>
         <NumberButton value="8" handleNumInput={this.handleNumInput}/>
         <NumberButton value="9" handleNumInput={this.handleNumInput}/>
+        <DecimalButton value="." handleDecimal={this.handleDecimal}/>
         <OperatorButton value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
         <OperatorButton value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
         <OperatorButton value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
