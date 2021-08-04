@@ -1,7 +1,7 @@
 import React from "react";
 
 class NumberButton extends React.Component {
-  onTrigger = (event) => {
+  onTrigger(event) {
     this.props.handleNumInput(this.props.value);
     event.preventDefault();
   }
@@ -9,7 +9,7 @@ class NumberButton extends React.Component {
   render() {
     return (
       <div>
-        <input type="button" value={this.props.value} onClick={this.onTrigger}/>
+        <input type="button" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
       </div>
     );
   }
