@@ -19,8 +19,14 @@ class App extends React.Component {
   }
 
   handleNumInput(num) {
+    let opInProgress = false;
     if (this.state.currentValue && this.state.operation) {
-      this.setState({previousValue: this.state.currentValue})
+      this.setState({previousValue: this.state.currentValue});
+      opInProgress = true;
+    }
+    if (this.state.currentValue && !opInProgress) {
+      this.setState({currentValue: this.state.currentValue.concat(num)});
+      return;
     }
     this.setState({currentValue: num});
   }
