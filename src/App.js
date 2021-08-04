@@ -3,6 +3,7 @@ import Field from "./Components/Field"
 import { evaluate } from "mathjs";
 import NumberButton from "./Components/NumberButton";
 import OperatorButton from "./Components/OperatorButton";
+import EqualsButton from "./Components/EqualsButton";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
     this.handleNumInput = this.handleNumInput.bind(this);
     this.handleOperation = this.handleOperation.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleEquals = this.handleEquals.bind(this);
   }
 
   handleNumInput(num) {
@@ -30,14 +32,17 @@ class App extends React.Component {
     }
     this.setState({currentValue: num});
   }
-  handleOperation(op) {
-    this.setState({operation: op});
+  handleEquals() {
     if (this.state.previousValue && this.state.currentValue) {
       this.setState({
         currentValue: evaluate(this.state.previousValue + this.state.operation + this.state.currentValue),
         previousValue: ""
       });
     }
+  }
+  handleOperation(op) {
+    this.setState({operation: op});
+    this.handleEquals();
   }
   handleToggle(isToggled) {
     this.setState({opToggle: isToggled});
@@ -62,6 +67,7 @@ class App extends React.Component {
         <OperatorButton value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
         <OperatorButton value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
         <OperatorButton value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle}/>
+        <EqualsButton value="=" handleEquals={this.handleEquals}/>
       </div>
     );
   }
