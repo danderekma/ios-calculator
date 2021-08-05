@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: 0,
+      currentValue: "0",
       previousValue: "",
       operation: "",
       opToggled: false,
@@ -23,34 +23,38 @@ class App extends React.Component {
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperation = this.handleOperation.bind(this);
     this.handleClear = this.handleClear.bind(this);
-    this.handleSign = this.handleSign.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleSign = this.handleSign.bind(this);
   }
 
   handleNumInput(num) {
-    if (this.state.currentValue && !this.state.opToggled) {
+    if (this.state.opToggled) {
+      this.setState({
+        previousValue: this.state.currentValue,
+        currentValue: num, 
+        opToggled: false
+      });
+    } else {
       if (this.state.invokedEquals) {
         this.setState({
           currentValue: num,
           invokedEquals: false
         });
-        return;
+      } else {
+        if (this.state.currentValue === "0") {
+          this.setState({currentValue: num});
+        } else if (this.state.currentValue === "-0") {
+          this.setState({currentValue: "-".concat(num)})
+        } else {
+          this.setState({currentValue: this.state.currentValue.concat(num)});
+        }
       }
-      this.setState({currentValue: this.state.currentValue.concat(num)});
-      return;
     }
-    if (this.state.currentValue && this.state.operation && this.state.opToggled) {
-      this.setState({previousValue: this.state.currentValue});
-    }
-    this.setState({
-      currentValue: num, 
-      opToggled: false
-    });
   }
   handleEquals() {
-    if (this.state.previousValue && this.state.currentValue) {
+    if (this.state.previousValue) {
       this.setState({
-        currentValue: evaluate(this.state.previousValue + this.state.operation + this.state.currentValue),
+        currentValue: String(evaluate(this.state.previousValue + this.state.operation + this.state.currentValue)),
         previousValue: "",
         invokedEquals: true
       });
@@ -68,23 +72,30 @@ class App extends React.Component {
   }
   handleClear() {
     this.setState({
-      currentValue: 0,
+      currentValue: "0",
       previousValue: "",
       operation: "",
-      opToggled: false
+      opToggled: false,
+      invokedEquals: false
     });
   }
+  handleToggle() {
+    this.setState({opToggled: true});
+  }
   handleSign() {
-    if (this.state.currentValue && this.state.currentValue !== "0") {
+    if (this.state.opToggled) {
+      this.setState({
+        previousValue: this.state.currentValue,
+        currentValue: "-0",
+        opToggled: false
+      })
+    } else {
       if (this.state.currentValue.slice(0, 1) !== "-") {
         this.setState({currentValue: "-".concat(this.state.currentValue)});
       } else {
         this.setState({currentValue: this.state.currentValue.slice(1)});
       }
     }
-  }
-  handleToggle() {
-    this.setState({opToggled: true});
   }
 
   render() {
