@@ -2,6 +2,7 @@ import React from "react";
 import { evaluate } from "mathjs";
 import Field from "./Components/Field"
 import ClearButton from "./Components/ClearButton";
+import SignButton from "./Components/SignButton";
 import NumberButton from "./Components/NumberButton";
 import DecimalButton from "./Components/DecimalButton";
 import OperatorButton from "./Components/OperatorButton";
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperation = this.handleOperation.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleSign = this.handleSign.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -38,12 +40,12 @@ class App extends React.Component {
       return;
     }
     if (this.state.currentValue && this.state.operation && this.state.opToggled) {
-      this.setState({
-        previousValue: this.state.currentValue,
-        opToggled: false
-      });
+      this.setState({previousValue: this.state.currentValue});
     }
-    this.setState({currentValue: num});
+    this.setState({
+      currentValue: num, 
+      opToggled: false
+    });
   }
   handleEquals() {
     if (this.state.previousValue && this.state.currentValue) {
@@ -58,8 +60,11 @@ class App extends React.Component {
     this.handleNumInput(".");
   }
   handleOperation(op) {
-    this.setState({operation: op});
     this.handleEquals();
+    this.setState({
+      operation: op,
+      invokedEquals: false
+    });
   }
   handleClear() {
     this.setState({
@@ -68,6 +73,15 @@ class App extends React.Component {
       operation: "",
       opToggled: false
     });
+  }
+  handleSign() {
+    if (this.state.currentValue && this.state.currentValue !== "0") {
+      if (this.state.currentValue.slice(0, 1) !== "-") {
+        this.setState({currentValue: "-".concat(this.state.currentValue)});
+      } else {
+        this.setState({currentValue: this.state.currentValue.slice(1)});
+      }
+    }
   }
   handleToggle() {
     this.setState({opToggled: true});
@@ -79,6 +93,7 @@ class App extends React.Component {
         <h1>iOS Calculator</h1>
         <Field value={this.state.currentValue}/>
         <ClearButton value="C" handleClear={this.handleClear}/>
+        <SignButton value="+/-" handleSign={this.handleSign}/>
         <NumberButton value="0" handleNumInput={this.handleNumInput}/>
         <NumberButton value="1" handleNumInput={this.handleNumInput}/>
         <NumberButton value="2" handleNumInput={this.handleNumInput}/>
