@@ -3,6 +3,7 @@ import { evaluate } from "mathjs";
 import Field from "./Components/Field"
 import ClearButton from "./Components/ClearButton";
 import SignButton from "./Components/SignButton";
+import PercentButton from "./Components/PercentButton";
 import NumberButton from "./Components/NumberButton";
 import DecimalButton from "./Components/DecimalButton";
 import OperatorButton from "./Components/OperatorButton";
@@ -22,9 +23,10 @@ class App extends React.Component {
     this.handleEquals = this.handleEquals.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperation = this.handleOperation.bind(this);
-    this.handleClear = this.handleClear.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleClear = this.handleClear.bind(this);
     this.handleSign = this.handleSign.bind(this);
+    this.handlePercent = this.handlePercent.bind(this);
   }
 
   handleNumInput(num) {
@@ -61,7 +63,13 @@ class App extends React.Component {
     }
   }
   handleDecimal() {
-    this.handleNumInput(".");
+    if (this.state.opToggled || this.state.currentValue === "-0") {
+      this.handleNumInput("0.")
+    } else {
+      if (!this.state.currentValue.includes(".")) {
+        this.handleNumInput(".");
+      }
+    }
   }
   handleOperation(op) {
     this.handleEquals();
@@ -69,6 +77,9 @@ class App extends React.Component {
       operation: op,
       invokedEquals: false
     });
+  }
+  handleToggle() {
+    this.setState({opToggled: true});
   }
   handleClear() {
     this.setState({
@@ -78,9 +89,6 @@ class App extends React.Component {
       opToggled: false,
       invokedEquals: false
     });
-  }
-  handleToggle() {
-    this.setState({opToggled: true});
   }
   handleSign() {
     if (this.state.opToggled) {
@@ -97,14 +105,17 @@ class App extends React.Component {
       }
     }
   }
+  handlePercent() {
+    this.setState({currentValue: String(this.state.currentValue / 100)});
+  }
 
   render() {
     return (
       <div>
-        <h1>iOS Calculator</h1>
         <Field value={this.state.currentValue}/>
         <ClearButton value="C" handleClear={this.handleClear}/>
         <SignButton value="+/-" handleSign={this.handleSign}/>
+        <PercentButton value="%" handlePercent={this.handlePercent}/>
         <NumberButton value="0" handleNumInput={this.handleNumInput}/>
         <NumberButton value="1" handleNumInput={this.handleNumInput}/>
         <NumberButton value="2" handleNumInput={this.handleNumInput}/>
