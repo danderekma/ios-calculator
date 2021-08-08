@@ -1,13 +1,14 @@
 import React from "react";
 import { evaluate } from "mathjs";
-import Field from "./Components/Field"
-import ClearButton from "./Components/ClearButton";
-import SignButton from "./Components/SignButton";
-import PercentButton from "./Components/PercentButton";
-import NumberButton from "./Components/NumberButton";
-import DecimalButton from "./Components/DecimalButton";
-import OperatorButton from "./Components/OperatorButton";
-import EqualsButton from "./Components/EqualsButton";
+import Field from "./components/Field"
+import ClearButton from "./components/ClearButton";
+import SignButton from "./components/SignButton";
+import PercentButton from "./components/PercentButton";
+import NumberButton from "./components/NumberButton";
+import DecimalButton from "./components/DecimalButton";
+import OperatorButton from "./components/OperatorButton";
+import EqualsButton from "./components/EqualsButton";
+import './styles.scss'
 
 class App extends React.Component {
   constructor(props) {
@@ -111,7 +112,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Field value={this.state.currentValue}/>
         <ClearButton value="C" handleClear={this.handleClear}/>
         <SignButton value="+/-" handleSign={this.handleSign}/>
