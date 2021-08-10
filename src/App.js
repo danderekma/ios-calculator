@@ -8,7 +8,6 @@ import NumberButton from "./components/NumberButton";
 import DecimalButton from "./components/DecimalButton";
 import OperatorButton from "./components/OperatorButton";
 import EqualsButton from "./components/EqualsButton";
-import './styles.scss'
 
 class App extends React.Component {
   constructor(props) {
@@ -112,26 +111,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
+      <div id="app">
         <Field value={this.state.currentValue}/>
-        <ClearButton value="C" handleClear={this.handleClear}/>
+        <ClearButton value="C" handleClear={this.handleClear} clearState={this.state.currentValue}/>
         <SignButton value="+/-" handleSign={this.handleSign}/>
         <PercentButton value="%" handlePercent={this.handlePercent}/>
-        <NumberButton value="0" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="1" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="2" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="3" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="4" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="5" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="6" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="7" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="8" handleNumInput={this.handleNumInput}/>
-        <NumberButton value="9" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="zero" value="0" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="one" value="1" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="two" value="2" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="three" value="3" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="four" value="4" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="five" value="5" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="six" value="6" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="seven" value="7" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="eight" value="8" handleNumInput={this.handleNumInput}/>
+        <NumberButton num="nine" value="9" handleNumInput={this.handleNumInput}/>
         <DecimalButton value="." handleDecimal={this.handleDecimal}/>
-        <OperatorButton value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="addition" value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="subtraction" value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="multiplication" value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="division" value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <EqualsButton value="=" handleEquals={this.handleEquals}/>
       </div>
     );

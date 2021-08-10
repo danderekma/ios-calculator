@@ -1,0 +1,233 @@
+#app {
+  display: grid;
+  grid-template-areas: 
+    '. . . .'
+    'field field field field'
+    'clear sign percent divide'
+    'seven eight nine multiply'
+    'four five six subtract'
+    'one two three add'
+    'zero zero decimal equals';
+  background-color: #1C1C1C;
+  width: 390px;
+  height: 844px;
+  border-radius: 50px;
+
+  @mixin div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @mixin btn {
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+  }
+
+  #field-div {
+    grid-area: field;
+    #field {
+      display: flex;
+      justify-content: flex-end;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 1px;
+      font-size: 80px;
+      color: #FFFFFF;
+    }
+  }
+
+  #clear-div {
+    grid-area: clear;
+    @include div;
+    #clear-btn {
+      background-color: #D4D4D2;
+      color: #1C1C1C;
+      @include btn;
+    }
+  }
+  
+  #sign-div {
+    grid-area: sign;
+    @include div;
+    #sign-btn {
+      grid-area: sign;
+      background-color: #D4D4D2;
+      color: #1C1C1C;
+      @include btn;
+    }
+  }
+
+  #percent-div {
+    grid-area: percent;
+    @include div;
+    #percent-btn {
+      background-color: #D4D4D2;
+      color: #1C1C1C;
+      @include btn;
+    }
+  }
+
+  #equals-div {
+    grid-area: equals;
+    @include div;
+    #equals-btn {
+      background-color: #FF9500;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #division-div {
+    grid-area: divide;
+    @include div;
+    #division-btn {
+      background-color: #FF9500;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #multiplication-div {
+    grid-area: multiply;
+    @include div;
+    #multiplication-btn {
+      background-color: #FF9500;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #subtraction-div {
+    grid-area: subtract;
+    @include div;
+    #subtraction-btn {
+      background-color: #FF9500;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #addition-div {
+    grid-area: add;
+    @include div;
+    #addition-btn {
+      background-color: #FF9500;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #decimal-div {
+    grid-area: decimal;
+    @include div;
+    #decimal-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #zero-div {
+    grid-area: zero;
+    @include div;
+    #zero-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #one-div {
+    grid-area: one;
+    @include div;
+    #one-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #two-div {
+    grid-area: two;
+    @include div;
+    #two-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #three-div {
+    grid-area: three;
+    @include div;
+    #three-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #four-div {
+    grid-area: four;
+    @include div;
+    #four-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #five-div {
+    grid-area: five;
+    @include div;
+    #five-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #six-div {
+    grid-area: six;
+    @include div;
+    #six-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #seven-div {
+    grid-area: seven;
+    @include div;
+    #seven-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #eight-div {
+    grid-area: eight;
+    @include div;
+    #eight-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+
+  #nine-div {
+    grid-area: nine;
+    @include div;
+    #nine-btn {
+      background-color: #505050;
+      color: #FFFFFF;
+      @include btn;
+    }
+  }
+}

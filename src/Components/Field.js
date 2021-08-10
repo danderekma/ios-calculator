@@ -1,10 +1,11 @@
 import React from "react";
+import '../styles.scss'
 
 class Field extends React.Component {
   render() {
     return (
-      <div>
-        <h1>{this.props.value}</h1>
+      <div id="field-div">
+        <h1 id="field">{this.props.value}</h1>
       </div>
     );
   }

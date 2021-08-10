@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles.scss';
 
 class NumberButton extends React.Component {
   onTrigger(event) {
@@ -8,8 +9,8 @@ class NumberButton extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="button" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
+      <div id={this.props.num + "-div"}>
+        <input type="button" id={this.props.num + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
       </div>
     );
   }

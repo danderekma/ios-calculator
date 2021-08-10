@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles.scss';
 
 class SignButton extends React.Component {
   onTrigger(event) {
@@ -8,8 +9,8 @@ class SignButton extends React.Component {
   
   render() {
     return (
-      <div>
-        <input type="button" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
+      <div id="sign-div">
+        <input type="button" id="sign-btn" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
       </div>
     );
   }

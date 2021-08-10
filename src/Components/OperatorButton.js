@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles.scss';
 
 class OperatorButton extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class OperatorButton extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="button" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
+      <div id={this.props.op + "-div"}>
+        <input type="button" id={this.props.op + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
       </div>
     );
   }
