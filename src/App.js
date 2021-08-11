@@ -73,10 +73,14 @@ class App extends React.Component {
   }
   handleOperation(op) {
     this.handleEquals();
-    this.setState({
-      operation: op,
-      invokedEquals: false
-    });
+    if (op === "x") {
+      this.setState({operation: "*"});
+    } else if (op === "÷") {
+      this.setState({operation: "/"});
+    } else {
+      this.setState({operation: op});
+    }
+    this.setState({invokedEquals: false});
   }
   handleToggle() {
     this.setState({opToggled: true});
@@ -129,8 +133,8 @@ class App extends React.Component {
         <DecimalButton value="." handleDecimal={this.handleDecimal}/>
         <OperatorButton op="addition" value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <OperatorButton op="subtraction" value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="multiplication" value="*" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="division" value="/" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="multiplication" value="x" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="division" value="÷" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <EqualsButton value="=" handleEquals={this.handleEquals}/>
       </div>
     );

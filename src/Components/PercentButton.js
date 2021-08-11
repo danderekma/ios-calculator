@@ -9,9 +9,7 @@ class PercentButton extends React.Component {
   
   render() {
     return (
-      <div id="percent-div">
-        <input type="button" id="percent-btn" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
-      </div>
+      <input type="button" id="percent-btn" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
     );
   }
 }

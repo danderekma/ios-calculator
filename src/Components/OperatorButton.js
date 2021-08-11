@@ -16,9 +16,7 @@ class OperatorButton extends React.Component {
 
   render() {
     return (
-      <div id={this.props.op + "-div"}>
-        <input type="button" id={this.props.op + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
-      </div>
+      <input type="button" id={this.props.op + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
     );
   }
 }

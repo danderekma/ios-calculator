@@ -15,9 +15,7 @@ class ClearButton extends React.Component {
 
   render() {
     return (
-      <div id="clear-div">
-        <input type="button" id="clear-btn" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
-      </div>
+      <input type="button" id="clear-btn" value={this.props.value} onClick={this.onTrigger.bind(this)}/>
     );
   }
 }

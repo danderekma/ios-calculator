@@ -1,4 +1,10 @@
 #app {
+  $dark-gray: #1C1C1C;
+  $gray: #505050;
+  $light-gray: #D4D4D2;
+  $orange: #FF9500;
+  $white: #FFFFFF;
+
   display: grid;
   grid-template-areas: 
     '. . . .'
@@ -8,226 +14,172 @@
     'four five six subtract'
     'one two three add'
     'zero zero decimal equals';
-  background-color: #1C1C1C;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  background-color: $dark-gray;
   width: 390px;
   height: 844px;
+  padding: 50px 10px 50px 10px;
   border-radius: 50px;
-
-  @mixin div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   @mixin btn {
     border: none;
     border-radius: 50%;
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
     text-align: center;
   }
 
-  #field-div {
+  #field {
     grid-area: field;
-    #field {
-      display: flex;
-      justify-content: flex-end;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      letter-spacing: 1px;
-      font-size: 80px;
-      color: #FFFFFF;
-    }
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    font-family: -apple-system-body, BlinkMacSystemFont, sans-serif;
+    font-weight: 100;
+    font-size: 100px;
+    color: $white;
   }
 
-  #clear-div {
+  #clear-btn {
     grid-area: clear;
-    @include div;
-    #clear-btn {
-      background-color: #D4D4D2;
-      color: #1C1C1C;
-      @include btn;
-    }
+    background-color: $white;
+    color: $dark-gray;
+    @include btn;
   }
-  
-  #sign-div {
+
+  #sign-btn {
     grid-area: sign;
-    @include div;
-    #sign-btn {
-      grid-area: sign;
-      background-color: #D4D4D2;
-      color: #1C1C1C;
-      @include btn;
-    }
+    background-color: $light-gray;
+    color: $dark-gray;
+    @include btn;
   }
 
-  #percent-div {
+  #percent-btn {
     grid-area: percent;
-    @include div;
-    #percent-btn {
-      background-color: #D4D4D2;
-      color: #1C1C1C;
-      @include btn;
-    }
+    background-color: $light-gray;
+    color: $dark-gray;
+    @include btn;
   }
 
-  #equals-div {
+  #equals-btn {
     grid-area: equals;
-    @include div;
-    #equals-btn {
-      background-color: #FF9500;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $orange;
+    color: $white;
+    @include btn;
   }
 
-  #division-div {
+  #division-btn {
     grid-area: divide;
-    @include div;
-    #division-btn {
-      background-color: #FF9500;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $orange;
+    color: $white;
+    @include btn;
   }
 
-  #multiplication-div {
+  #multiplication-btn {
     grid-area: multiply;
-    @include div;
-    #multiplication-btn {
-      background-color: #FF9500;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $orange;
+    color: $white;
+    @include btn;
   }
 
-  #subtraction-div {
+  #subtraction-btn {
     grid-area: subtract;
-    @include div;
-    #subtraction-btn {
-      background-color: #FF9500;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $orange;
+    color: $white;
+    @include btn;
   }
 
-  #addition-div {
+  #addition-btn {
     grid-area: add;
-    @include div;
-    #addition-btn {
-      background-color: #FF9500;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $orange;
+    color: $white;
+    @include btn;
   }
 
-  #decimal-div {
+  #decimal-btn {
     grid-area: decimal;
-    @include div;
-    #decimal-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #zero-div {
+  #zero-btn {
     grid-area: zero;
-    @include div;
-    #zero-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    border: none;
+    border-radius: 80px;
+    font-size: 40px;
+    width: 170px;
+    height: 80px;
+    margin: 5px;
+    text-align: center;
   }
 
-  #one-div {
+  #one-btn {
     grid-area: one;
-    @include div;
-    #one-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #two-div {
+  #two-btn {
     grid-area: two;
-    @include div;
-    #two-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #three-div {
+  #three-btn {
     grid-area: three;
-    @include div;
-    #three-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #four-div {
+  #four-btn {
     grid-area: four;
-    @include div;
-    #four-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #five-div {
+  #five-btn {
     grid-area: five;
-    @include div;
-    #five-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #six-div {
+  #six-btn {
     grid-area: six;
-    @include div;
-    #six-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #seven-div {
+  #seven-btn {
     grid-area: seven;
-    @include div;
-    #seven-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #eight-div {
+  #eight-btn {
     grid-area: eight;
-    @include div;
-    #eight-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 
-  #nine-div {
+  #nine-btn {
     grid-area: nine;
-    @include div;
-    #nine-btn {
-      background-color: #505050;
-      color: #FFFFFF;
-      @include btn;
-    }
+    background-color: $gray;
+    color: $white;
+    @include btn;
   }
 }
