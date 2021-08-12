@@ -1,17 +1,13 @@
-import React from "react";
 import '../styles.scss';
 
-class NumberButton extends React.Component {
-  onTrigger(event) {
-    this.props.handleNumInput(this.props.value);
-    event.preventDefault();
+const NumberButton = (props) => {
+  const handleClick = () => {
+    props.handleNumInput(props.value);
   }
-
-  render() {
-    return (
-      <input type="button" id={this.props.num + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
-    );
-  }
+  
+  return (
+    <input type="button" id={props.num + "-btn"} value={props.value} onClick={handleClick}/>
+  );
 }
 
 export default NumberButton;

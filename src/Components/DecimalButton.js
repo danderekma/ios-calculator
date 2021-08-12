@@ -1,11 +1,9 @@
-import React from "react";
+import '../styles.scss';
 
-class DecimalButton extends React.Component {
-  render() {
-    return (
-      <input type="button" id="decimal-btn" value={this.props.value} onClick={this.props.handleDecimal}/>
-    );
-  }
+const DecimalButton = (props) => {
+  return (
+    <input type="button" id="decimal-btn" value={props.value} onClick={props.handleDecimal}/>
+  );
 }
 
 export default DecimalButton;

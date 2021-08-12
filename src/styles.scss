@@ -14,22 +14,26 @@
     'four five six subtract'
     'one two three add'
     'zero zero decimal equals';
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 90px 90px 90px 90px 90px;
   align-items: center;
   justify-content: center;
   background-color: $dark-gray;
   width: 390px;
-  height: 844px;
-  padding: 50px 10px 50px 10px;
+  height: 744px;
+  padding: 50px 0px;
   border-radius: 50px;
 
-  @mixin btn {
+  @mixin btn($grid-area, $background-color, $color) {
+    grid-area: $grid-area;
+    background-color: $background-color;
+    color: $color;
     border: none;
     border-radius: 50%;
-    font-size: 40px;
-    width: 80px;
-    height: 80px;
-    margin: 5px;
+    font-family: -apple-system-body, BlinkMacSystemFont, sans-serif;
+    font-size: 35px;
+    width: 75px;
+    height: 75px;
+    margin: 6px;
     text-align: center;
   }
 
@@ -38,73 +42,47 @@
     display: flex;
     justify-content: flex-end;
     margin: 0;
+    padding: 0 10px;
     font-family: -apple-system-body, BlinkMacSystemFont, sans-serif;
+    font-size: 95px;
     font-weight: 100;
-    font-size: 100px;
     color: $white;
   }
 
   #clear-btn {
-    grid-area: clear;
-    background-color: $white;
-    color: $dark-gray;
-    @include btn;
+    @include btn(clear, $light-gray, $dark-gray);
   }
 
   #sign-btn {
-    grid-area: sign;
-    background-color: $light-gray;
-    color: $dark-gray;
-    @include btn;
+    @include btn(sign, $light-gray, $dark-gray);
   }
 
   #percent-btn {
-    grid-area: percent;
-    background-color: $light-gray;
-    color: $dark-gray;
-    @include btn;
+    @include btn(percent, $light-gray, $dark-gray);
   }
 
   #equals-btn {
-    grid-area: equals;
-    background-color: $orange;
-    color: $white;
-    @include btn;
+    @include btn(equals, $orange, $white);
   }
 
   #division-btn {
-    grid-area: divide;
-    background-color: $orange;
-    color: $white;
-    @include btn;
+    @include btn(divide, $orange, $white);
   }
 
   #multiplication-btn {
-    grid-area: multiply;
-    background-color: $orange;
-    color: $white;
-    @include btn;
+    @include btn(multiply, $orange, $white);
   }
 
   #subtraction-btn {
-    grid-area: subtract;
-    background-color: $orange;
-    color: $white;
-    @include btn;
+    @include btn(subtract, $orange, $white);
   }
 
   #addition-btn {
-    grid-area: add;
-    background-color: $orange;
-    color: $white;
-    @include btn;
+    @include btn(add, $orange, $white);
   }
 
   #decimal-btn {
-    grid-area: decimal;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(decimal, $gray, $white);
   }
 
   #zero-btn {
@@ -114,72 +92,46 @@
     border: none;
     border-radius: 80px;
     font-size: 40px;
-    width: 170px;
-    height: 80px;
-    margin: 5px;
-    text-align: center;
+    width: 160px;
+    height: 75px;
+    margin: 6px;
+    text-align: left;
+    text-indent: 20px;
   }
 
   #one-btn {
-    grid-area: one;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(one, $gray, $white);
   }
 
   #two-btn {
-    grid-area: two;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(two, $gray, $white);
   }
 
   #three-btn {
-    grid-area: three;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(three, $gray, $white)
   }
 
   #four-btn {
-    grid-area: four;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(four, $gray, $white);
   }
 
   #five-btn {
-    grid-area: five;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(five, $gray, $white);
   }
 
   #six-btn {
-    grid-area: six;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(six, $gray, $white);
   }
 
   #seven-btn {
-    grid-area: seven;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(seven, $gray, $white);
   }
 
   #eight-btn {
-    grid-area: eight;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(eight, $gray, $white);
   }
 
   #nine-btn {
-    grid-area: nine;
-    background-color: $gray;
-    color: $white;
-    @include btn;
+    @include btn(nine, $gray, $white);
   }
 }

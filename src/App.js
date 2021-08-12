@@ -47,7 +47,7 @@ class App extends React.Component {
           this.setState({currentValue: num});
         } else if (this.state.currentValue === "-0") {
           this.setState({currentValue: "-".concat(num)})
-        } else {
+        } else if ((this.state.currentValue.slice(0, 1) === "-" && this.state.currentValue.length < 5) || this.state.currentValue.length < 6) {
           this.setState({currentValue: this.state.currentValue.concat(num)});
         }
       }
@@ -73,10 +73,12 @@ class App extends React.Component {
   }
   handleOperation(op) {
     this.handleEquals();
-    if (op === "x") {
+    if (op === "×") {
       this.setState({operation: "*"});
     } else if (op === "÷") {
       this.setState({operation: "/"});
+    } else if (op === "−") {
+      this.setState({operation: "-"})
     } else {
       this.setState({operation: op});
     }
@@ -86,13 +88,17 @@ class App extends React.Component {
     this.setState({opToggled: true});
   }
   handleClear() {
-    this.setState({
-      currentValue: "0",
-      previousValue: "",
-      operation: "",
-      opToggled: false,
-      invokedEquals: false
-    });
+    if (this.state.currentValue !== "0" && this.state.previousValue) {
+      this.setState({currentValue: "0"});
+    } else {
+      this.setState({
+        currentValue: "0",
+        previousValue: "",
+        operation: "",
+        opToggled: false,
+        invokedEquals: false
+      });
+    }
   }
   handleSign() {
     if (this.state.opToggled) {
@@ -117,7 +123,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Field value={this.state.currentValue}/>
-        <ClearButton value="C" handleClear={this.handleClear} clearState={this.state.currentValue}/>
+        <ClearButton value="C" handleClear={this.handleClear}/>
         <SignButton value="+/-" handleSign={this.handleSign}/>
         <PercentButton value="%" handlePercent={this.handlePercent}/>
         <NumberButton num="zero" value="0" handleNumInput={this.handleNumInput}/>
@@ -132,8 +138,8 @@ class App extends React.Component {
         <NumberButton num="nine" value="9" handleNumInput={this.handleNumInput}/>
         <DecimalButton value="." handleDecimal={this.handleDecimal}/>
         <OperatorButton op="addition" value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="subtraction" value="-" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="multiplication" value="x" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="subtraction" value="−" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
+        <OperatorButton op="multiplication" value="×" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <OperatorButton op="division" value="÷" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
         <EqualsButton value="=" handleEquals={this.handleEquals}/>
       </div>

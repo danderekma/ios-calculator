@@ -1,12 +1,9 @@
-import React from "react";
 import '../styles.scss';
 
-class EqualsButton extends React.Component {
-  render() {
-    return (
-      <input type="button" id="equals-btn" value={this.props.value} onClick={this.props.handleEquals}/>
-    );
-  }
+const EqualsButton = (props) => {
+  return (
+    <input type="button" id="equals-btn" value={props.value} onClick={props.handleEquals}/>
+  );
 }
 
 export default EqualsButton;
