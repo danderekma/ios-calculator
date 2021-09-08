@@ -86,15 +86,9 @@
   }
 
   #zero-btn {
-    grid-area: zero;
-    background-color: $gray;
-    color: $white;
-    border: none;
+    @include btn(zero, $gray, $white);
     border-radius: 80px;
-    font-size: 40px;
     width: 160px;
-    height: 75px;
-    margin: 6px;
     text-align: left;
     text-indent: 20px;
   }

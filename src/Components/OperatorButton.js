@@ -8,6 +8,7 @@ class OperatorButton extends React.Component {
       isToggled: this.props.isToggled
     }
   }
+  
   onTrigger(event) {
     this.props.handleOperation(this.props.value);
     this.props.handleToggle();

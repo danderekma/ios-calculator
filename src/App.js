@@ -1,5 +1,6 @@
 import React from "react";
-import { evaluate } from "mathjs";
+import { evaluate, round } from "mathjs";
+import "./styles.scss";
 import Field from "./components/Field"
 import ClearButton from "./components/ClearButton";
 import SignButton from "./components/SignButton";
@@ -53,15 +54,17 @@ class App extends React.Component {
       }
     }
   }
+
   handleEquals() {
     if (this.state.previousValue) {
       this.setState({
-        currentValue: String(evaluate(this.state.previousValue + this.state.operation + this.state.currentValue)),
+        currentValue: String(round(evaluate(this.state.previousValue + this.state.operation + this.state.currentValue), 6)),
         previousValue: "",
         invokedEquals: true
       });
     }
   }
+
   handleDecimal() {
     if (this.state.opToggled || this.state.currentValue === "-0") {
       this.handleNumInput("0.")
@@ -71,6 +74,7 @@ class App extends React.Component {
       }
     }
   }
+
   handleOperation(op) {
     this.handleEquals();
     if (op === "×") {
@@ -84,9 +88,11 @@ class App extends React.Component {
     }
     this.setState({invokedEquals: false});
   }
+
   handleToggle() {
     this.setState({opToggled: true});
   }
+
   handleClear() {
     if (this.state.currentValue !== "0" && this.state.previousValue) {
       this.setState({currentValue: "0"});
@@ -100,6 +106,7 @@ class App extends React.Component {
       });
     }
   }
+
   handleSign() {
     if (this.state.opToggled) {
       this.setState({
@@ -115,6 +122,7 @@ class App extends React.Component {
       }
     }
   }
+
   handlePercent() {
     this.setState({currentValue: String(this.state.currentValue / 100)});
   }
