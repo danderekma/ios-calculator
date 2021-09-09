@@ -4,7 +4,7 @@
 A fully operational calculator that mimics the design and functionality of the iOS calculator app.
 
 ## Screenshot
-<img width="250" alt="ios-calculator-screenshot" src="https://user-images.githubusercontent.com/79228592/132566656-11d76e30-66f1-41d5-a38e-953bc1a6d421.png">
+<img width="300" alt="ios-calculator-screenshot" src="https://user-images.githubusercontent.com/79228592/132566656-11d76e30-66f1-41d5-a38e-953bc1a6d421.png">
 
 ## Technologies
 Project is created with:
