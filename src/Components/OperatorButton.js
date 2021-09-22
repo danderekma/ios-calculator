@@ -1,14 +1,14 @@
 import React from "react";
-import '../styles.scss';
+import "../styles.scss";
 
 class OperatorButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggled: this.props.isToggled
-    }
+      isToggled: this.props.isToggled,
+    };
   }
-  
+
   onTrigger(event) {
     this.props.handleOperation(this.props.value);
     this.props.handleToggle();
@@ -17,7 +17,12 @@ class OperatorButton extends React.Component {
 
   render() {
     return (
-      <input type="button" id={this.props.op + "-btn"} value={this.props.value} onClick={this.onTrigger.bind(this)}/>
+      <input
+        type="button"
+        id={this.props.op + "-btn"}
+        value={this.props.value}
+        onClick={this.onTrigger.bind(this)}
+      />
     );
   }
 }

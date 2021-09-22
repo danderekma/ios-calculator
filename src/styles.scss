@@ -1,19 +1,19 @@
 #app {
-  $dark-gray: #1C1C1C;
+  $dark-gray: #1c1c1c;
   $gray: #505050;
-  $light-gray: #D4D4D2;
-  $orange: #FF9500;
-  $white: #FFFFFF;
+  $light-gray: #d4d4d2;
+  $orange: #ff9500;
+  $white: #ffffff;
 
   display: grid;
-  grid-template-areas: 
-    '. . . .'
-    'field field field field'
-    'clear sign percent divide'
-    'seven eight nine multiply'
-    'four five six subtract'
-    'one two three add'
-    'zero zero decimal equals';
+  grid-template-areas:
+    ". . . ."
+    "field field field field"
+    "clear sign percent divide"
+    "seven eight nine multiply"
+    "four five six subtract"
+    "one two three add"
+    "zero zero decimal equals";
   grid-template-rows: 1fr 1fr 90px 90px 90px 90px 90px;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,7 @@
   }
 
   #three-btn {
-    @include btn(three, $gray, $white)
+    @include btn(three, $gray, $white);
   }
 
   #four-btn {
