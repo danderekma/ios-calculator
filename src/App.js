@@ -1,7 +1,7 @@
 import React from "react";
 import { evaluate, round } from "mathjs";
 import "./styles.scss";
-import Field from "./components/Field"
+import Field from "./components/Field";
 import ClearButton from "./components/ClearButton";
 import SignButton from "./components/SignButton";
 import PercentButton from "./components/PercentButton";
@@ -18,8 +18,8 @@ class App extends React.Component {
       previousValue: "",
       operation: "",
       opToggled: false,
-      invokedEquals: false
-    }
+      invokedEquals: false,
+    };
     this.handleNumInput = this.handleNumInput.bind(this);
     this.handleEquals = this.handleEquals.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
@@ -34,22 +34,26 @@ class App extends React.Component {
     if (this.state.opToggled) {
       this.setState({
         previousValue: this.state.currentValue,
-        currentValue: num, 
-        opToggled: false
+        currentValue: num,
+        opToggled: false,
       });
     } else {
       if (this.state.invokedEquals) {
         this.setState({
           currentValue: num,
-          invokedEquals: false
+          invokedEquals: false,
         });
       } else {
         if (this.state.currentValue === "0") {
-          this.setState({currentValue: num});
+          this.setState({ currentValue: num });
         } else if (this.state.currentValue === "-0") {
-          this.setState({currentValue: "-".concat(num)})
-        } else if ((this.state.currentValue.slice(0, 1) === "-" && this.state.currentValue.length < 5) || this.state.currentValue.length < 6) {
-          this.setState({currentValue: this.state.currentValue.concat(num)});
+          this.setState({ currentValue: "-".concat(num) });
+        } else if (
+          (this.state.currentValue.slice(0, 1) === "-" &&
+            this.state.currentValue.length < 5) ||
+          this.state.currentValue.length < 6
+        ) {
+          this.setState({ currentValue: this.state.currentValue.concat(num) });
         }
       }
     }
@@ -58,16 +62,25 @@ class App extends React.Component {
   handleEquals() {
     if (this.state.previousValue) {
       this.setState({
-        currentValue: String(round(evaluate(this.state.previousValue + this.state.operation + this.state.currentValue), 6)),
+        currentValue: String(
+          round(
+            evaluate(
+              this.state.previousValue +
+                this.state.operation +
+                this.state.currentValue
+            ),
+            6
+          )
+        ),
         previousValue: "",
-        invokedEquals: true
+        invokedEquals: true,
       });
     }
   }
 
   handleDecimal() {
     if (this.state.opToggled || this.state.currentValue === "-0") {
-      this.handleNumInput("0.")
+      this.handleNumInput("0.");
     } else {
       if (!this.state.currentValue.includes(".")) {
         this.handleNumInput(".");
@@ -78,31 +91,31 @@ class App extends React.Component {
   handleOperation(op) {
     this.handleEquals();
     if (op === "×") {
-      this.setState({operation: "*"});
+      this.setState({ operation: "*" });
     } else if (op === "÷") {
-      this.setState({operation: "/"});
+      this.setState({ operation: "/" });
     } else if (op === "−") {
-      this.setState({operation: "-"})
+      this.setState({ operation: "-" });
     } else {
-      this.setState({operation: op});
+      this.setState({ operation: op });
     }
-    this.setState({invokedEquals: false});
+    this.setState({ invokedEquals: false });
   }
 
   handleToggle() {
-    this.setState({opToggled: true});
+    this.setState({ opToggled: true });
   }
 
   handleClear() {
     if (this.state.currentValue !== "0" && this.state.previousValue) {
-      this.setState({currentValue: "0"});
+      this.setState({ currentValue: "0" });
     } else {
       this.setState({
         currentValue: "0",
         previousValue: "",
         operation: "",
         opToggled: false,
-        invokedEquals: false
+        invokedEquals: false,
       });
     }
   }
@@ -112,44 +125,108 @@ class App extends React.Component {
       this.setState({
         previousValue: this.state.currentValue,
         currentValue: "-0",
-        opToggled: false
-      })
+        opToggled: false,
+      });
     } else {
       if (this.state.currentValue.slice(0, 1) !== "-") {
-        this.setState({currentValue: "-".concat(this.state.currentValue)});
+        this.setState({ currentValue: "-".concat(this.state.currentValue) });
       } else {
-        this.setState({currentValue: this.state.currentValue.slice(1)});
+        this.setState({ currentValue: this.state.currentValue.slice(1) });
       }
     }
   }
 
   handlePercent() {
-    this.setState({currentValue: String(this.state.currentValue / 100)});
+    this.setState({ currentValue: String(this.state.currentValue / 100) });
   }
 
   render() {
     return (
       <div id="app">
-        <Field value={this.state.currentValue}/>
-        <ClearButton value="C" handleClear={this.handleClear}/>
-        <SignButton value="+/-" handleSign={this.handleSign}/>
-        <PercentButton value="%" handlePercent={this.handlePercent}/>
-        <NumberButton num="zero" value="0" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="one" value="1" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="two" value="2" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="three" value="3" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="four" value="4" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="five" value="5" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="six" value="6" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="seven" value="7" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="eight" value="8" handleNumInput={this.handleNumInput}/>
-        <NumberButton num="nine" value="9" handleNumInput={this.handleNumInput}/>
-        <DecimalButton value="." handleDecimal={this.handleDecimal}/>
-        <OperatorButton op="addition" value="+" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="subtraction" value="−" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="multiplication" value="×" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <OperatorButton op="division" value="÷" handleOperation={this.handleOperation} handleToggle={this.handleToggle} isToggled={this.state.opToggled}/>
-        <EqualsButton value="=" handleEquals={this.handleEquals}/>
+        <Field value={this.state.currentValue} />
+        <ClearButton value="C" handleClear={this.handleClear} />
+        <SignButton value="+/-" handleSign={this.handleSign} />
+        <PercentButton value="%" handlePercent={this.handlePercent} />
+        <NumberButton
+          num="zero"
+          value="0"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="one"
+          value="1"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="two"
+          value="2"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="three"
+          value="3"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="four"
+          value="4"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="five"
+          value="5"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="six"
+          value="6"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="seven"
+          value="7"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="eight"
+          value="8"
+          handleNumInput={this.handleNumInput}
+        />
+        <NumberButton
+          num="nine"
+          value="9"
+          handleNumInput={this.handleNumInput}
+        />
+        <DecimalButton value="." handleDecimal={this.handleDecimal} />
+        <OperatorButton
+          op="addition"
+          value="+"
+          handleOperation={this.handleOperation}
+          handleToggle={this.handleToggle}
+          isToggled={this.state.opToggled}
+        />
+        <OperatorButton
+          op="subtraction"
+          value="−"
+          handleOperation={this.handleOperation}
+          handleToggle={this.handleToggle}
+          isToggled={this.state.opToggled}
+        />
+        <OperatorButton
+          op="multiplication"
+          value="×"
+          handleOperation={this.handleOperation}
+          handleToggle={this.handleToggle}
+          isToggled={this.state.opToggled}
+        />
+        <OperatorButton
+          op="division"
+          value="÷"
+          handleOperation={this.handleOperation}
+          handleToggle={this.handleToggle}
+          isToggled={this.state.opToggled}
+        />
+        <EqualsButton value="=" handleEquals={this.handleEquals} />
       </div>
     );
   }
