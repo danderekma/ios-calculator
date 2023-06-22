@@ -13,9 +13,7 @@ interface CalculatorState {
 
 export default function App() {
   const [calculatorState, setCalculatorState] = useState<CalculatorState>({
-    primaryOperand: 0,
-    selectedOperation: undefined,
-    secondaryOperand: undefined
+    primaryOperand: 0
   });
 
   /**
