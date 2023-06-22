@@ -1,3 +1,5 @@
+import { format, add, subtract } from "mathjs";
+
 /**
  * Calculates result of both unary and binary operations
  * @param primaryOperand First operand
@@ -18,10 +20,12 @@ export default function calculate(
       return primaryOperand / 100;
     }
     case "add": {
-      return primaryOperand + secondaryOperand;
+      return +format(add(primaryOperand, secondaryOperand), { precision: 14 });
     }
     case "subtract": {
-      return primaryOperand - secondaryOperand;
+      return +format(subtract(primaryOperand, secondaryOperand), {
+        precision: 14
+      });
     }
     case "multiply": {
       return primaryOperand * secondaryOperand;
