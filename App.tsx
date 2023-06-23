@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Button, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import "./styles.css";
 
 import calculate from "./helpers/calculate";
+Button;
+import Button from "./components/Button";
 
 interface CalculatorState {
   primaryOperand: number;
@@ -25,12 +27,10 @@ export default function App() {
    */
   const handleOperationChange = (operation: BinaryOperation) => {
     setCalculatorState((prevState) => {
-      if (prevState.selectedOperation === operation) {
-        return { ...prevState, selectedOperation: undefined };
-      } else if (
-        prevState.primaryOperand &&
-        prevState.selectedOperation &&
-        prevState.secondaryOperand
+      if (
+        prevState.primaryOperand !== undefined &&
+        prevState.selectedOperation !== undefined &&
+        prevState.secondaryOperand !== undefined
       ) {
         setDisplayedOperand("primary");
         return {
@@ -100,25 +100,41 @@ export default function App() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-dark-gray">
+    <View className="flex-1 items-center justify-center bg-black">
       <Text className="font-sans text-8xl font-thin text-white">
         {calculatorState[`${displayedOperand}Operand`]}
       </Text>
-      <Button onPress={() => handleOperationChange("add")} title="+" />
-      <Button onPress={() => handleOperationChange("subtract")} title="-" />
-      <Button onPress={() => handleOperationChange("multiply")} title="x" />
-      <Button onPress={() => handleOperationChange("divide")} title="/" />
-      <Button onPress={() => handleEquals()} title="=" />
-      <Button onPress={() => handleNumChange(0)} title="0" />
-      <Button onPress={() => handleNumChange(1)} title="1" />
-      <Button onPress={() => handleNumChange(2)} title="2" />
-      <Button onPress={() => handleNumChange(3)} title="3" />
-      <Button onPress={() => handleNumChange(4)} title="4" />
-      <Button onPress={() => handleNumChange(5)} title="5" />
-      <Button onPress={() => handleNumChange(6)} title="6" />
-      <Button onPress={() => handleNumChange(7)} title="7" />
-      <Button onPress={() => handleNumChange(8)} title="8" />
-      <Button onPress={() => handleNumChange(8)} title="9" />
+      <Button
+        onPress={() => handleOperationChange("add")}
+        title="+"
+        color="orange"
+      />
+      <Button
+        onPress={() => handleOperationChange("subtract")}
+        title="-"
+        color="orange"
+      />
+      <Button
+        onPress={() => handleOperationChange("multiply")}
+        title="x"
+        color="orange"
+      />
+      <Button
+        onPress={() => handleOperationChange("divide")}
+        title="÷"
+        color="orange"
+      />
+      <Button onPress={() => handleEquals()} title="=" color="orange" />
+      <Button onPress={() => handleNumChange(0)} title="0" color="dark-gray" />
+      <Button onPress={() => handleNumChange(1)} title="1" color="dark-gray" />
+      <Button onPress={() => handleNumChange(2)} title="2" color="dark-gray" />
+      <Button onPress={() => handleNumChange(3)} title="3" color="dark-gray" />
+      <Button onPress={() => handleNumChange(4)} title="4" color="dark-gray" />
+      <Button onPress={() => handleNumChange(5)} title="5" color="dark-gray" />
+      <Button onPress={() => handleNumChange(6)} title="6" color="dark-gray" />
+      <Button onPress={() => handleNumChange(7)} title="7" color="dark-gray" />
+      <Button onPress={() => handleNumChange(8)} title="8" color="dark-gray" />
+      <Button onPress={() => handleNumChange(8)} title="9" color="dark-gray" />
     </View>
   );
 }
