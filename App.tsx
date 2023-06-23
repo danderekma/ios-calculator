@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import "./styles.css";
 
 import calculate from "./helpers/calculate";
-Button;
+
 import Button from "./components/Button";
 
 interface CalculatorState {
