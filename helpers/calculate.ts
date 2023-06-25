@@ -1,4 +1,4 @@
-import { format, add, subtract } from "mathjs";
+import { format, add, subtract, divide } from "mathjs";
 
 /**
  * Calculates result of both unary and binary operations
@@ -20,18 +20,20 @@ export default function calculate(
       return primaryOperand / 100;
     }
     case "add": {
-      return +format(add(primaryOperand, secondaryOperand), { precision: 14 });
+      return +format(add(primaryOperand, secondaryOperand), { precision: 8 });
     }
     case "subtract": {
       return +format(subtract(primaryOperand, secondaryOperand), {
-        precision: 14
+        precision: 8
       });
     }
     case "multiply": {
       return primaryOperand * secondaryOperand;
     }
     case "divide": {
-      return primaryOperand / secondaryOperand;
+      return +format(divide(primaryOperand, secondaryOperand), {
+        precision: 8
+      });
     }
   }
 }

@@ -3,18 +3,24 @@ import { Pressable, Text } from "react-native";
 interface Props {
   onPress: () => void;
   title: string;
-  color: "light-gray" | "dark-gray" | "orange";
+  backgroundColor: "bg-light-gray" | "bg-dark-gray" | "bg-orange";
+  additionalClasses?: string;
 }
 
-export default function Button({ onPress, title, color }: Props) {
+export default function Button({
+  onPress,
+  title,
+  backgroundColor,
+  additionalClasses
+}: Props) {
   return (
     <Pressable
       onPress={onPress}
-      className={`flex h-20 w-20 items-center justify-center rounded-full bg-${color}`}
+      className={`flex h-20 w-20 items-center justify-center self-center justify-self-center rounded-full ${backgroundColor} ${additionalClasses}`}
     >
       <Text
-        className={`font-sans text-4xl text-${
-          color === "light-gray" ? "black" : "white"
+        className={`font-sans text-4xl ${
+          backgroundColor === "bg-light-gray" ? "text-black" : "text-white"
         }`}
       >
         {title}

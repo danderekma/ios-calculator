@@ -100,41 +100,89 @@ export default function App() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-black">
-      <Text className="font-sans text-8xl font-thin text-white">
+    <View className="grid w-96 grid-cols-4 grid-rows-6 bg-black">
+      <Text className="col-span-4 row-span-2 h-fit w-fit self-end justify-self-end p-8 font-sans text-8xl font-thin text-white">
         {calculatorState[`${displayedOperand}Operand`]}
       </Text>
+      <Button onPress={() => {}} title="C" backgroundColor="bg-light-gray" />
+      <Button onPress={() => {}} title="+/-" backgroundColor="bg-light-gray" />
+      <Button onPress={() => {}} title="%" backgroundColor="bg-light-gray" />
       <Button
-        onPress={() => handleOperationChange("add")}
-        title="+"
-        color="orange"
+        onPress={() => handleOperationChange("divide")}
+        title="÷"
+        backgroundColor="bg-orange"
       />
       <Button
-        onPress={() => handleOperationChange("subtract")}
-        title="-"
-        color="orange"
+        onPress={() => handleNumChange(7)}
+        title="7"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleNumChange(8)}
+        title="8"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleNumChange(8)}
+        title="9"
+        backgroundColor="bg-dark-gray"
       />
       <Button
         onPress={() => handleOperationChange("multiply")}
         title="x"
-        color="orange"
+        backgroundColor="bg-orange"
       />
       <Button
-        onPress={() => handleOperationChange("divide")}
-        title="÷"
-        color="orange"
+        onPress={() => handleNumChange(4)}
+        title="4"
+        backgroundColor="bg-dark-gray"
       />
-      <Button onPress={() => handleEquals()} title="=" color="orange" />
-      <Button onPress={() => handleNumChange(0)} title="0" color="dark-gray" />
-      <Button onPress={() => handleNumChange(1)} title="1" color="dark-gray" />
-      <Button onPress={() => handleNumChange(2)} title="2" color="dark-gray" />
-      <Button onPress={() => handleNumChange(3)} title="3" color="dark-gray" />
-      <Button onPress={() => handleNumChange(4)} title="4" color="dark-gray" />
-      <Button onPress={() => handleNumChange(5)} title="5" color="dark-gray" />
-      <Button onPress={() => handleNumChange(6)} title="6" color="dark-gray" />
-      <Button onPress={() => handleNumChange(7)} title="7" color="dark-gray" />
-      <Button onPress={() => handleNumChange(8)} title="8" color="dark-gray" />
-      <Button onPress={() => handleNumChange(8)} title="9" color="dark-gray" />
+      <Button
+        onPress={() => handleNumChange(5)}
+        title="5"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleNumChange(6)}
+        title="6"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleOperationChange("subtract")}
+        title="-"
+        backgroundColor="bg-orange"
+      />
+      <Button
+        onPress={() => handleNumChange(1)}
+        title="1"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleNumChange(2)}
+        title="2"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleNumChange(3)}
+        title="3"
+        backgroundColor="bg-dark-gray"
+      />
+      <Button
+        onPress={() => handleOperationChange("add")}
+        title="+"
+        backgroundColor="bg-orange"
+      />
+      <Button
+        onPress={() => handleNumChange(0)}
+        title="0"
+        backgroundColor="bg-dark-gray"
+        additionalClasses="col-span-2 w-full"
+      />
+      <Button
+        onPress={() => handleEquals()}
+        title="="
+        backgroundColor="bg-orange"
+      />
     </View>
   );
 }
